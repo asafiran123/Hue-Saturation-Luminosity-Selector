@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:HSLInClass.ViewModels"
+             x:Class="HSLInClass.View.SimpleColorSelectorPage">
+    
+    <ContentPage.Resources>
+        <viewModel:HslColorViewModel x:Key="viewModel"
+                                     Color="Red"
+                                     /> 
+        <Style TargetType="Slider">
+            <Setter Property="VerticalOptions"
+                    Value="CenterAndExpand" />
+            <Setter Property="BackgroundColor"
+                    Value="Gray"/> 
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Medium" /> 
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid BindingContext="{StaticResource viewModel}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" /> 
+            </Grid.RowDefinitions>
+            <BoxView Color="{Binding Color}" 
+                     Grid.Row="0" />
+            <StackLayout Grid.Row="1"
+                         Margin="10">
+                <Label Text="{Binding Name}"
+                       HorizontalTextAlignment="Center" />
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Hue"/>
+                    <Label Text="{Binding HueValue}"/>
+                </StackLayout>
+                <Slider Value="{Binding Hue}"/>
+                
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Saturation"/>
+                    <Label Text="{Binding SaturationValue}"/>
+                </StackLayout>
+                <Slider Value="{Binding Saturation}"/>
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Luminosity"/>
+                    <Label Text="{Binding LuminosityValue}"/>
+                </StackLayout>
+                <Slider Value="{Binding Luminosity}"/>
+
+
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
